@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
     estado: { type: String, trim: true },
 
     // --- ARCHIVOS DE IDENTIDAD (URLs) ---
-    // Aquí guardamos la ruta completa: http://localhost:5000/uploads/nombre-archivo.jpg
+    // En producción: https://floresyrolados.onrender.com/uploads/nombre-archivo.jpg
     fotoUrl: { type: String, default: null },
     videoUrl: { type: String, default: null },
     curpUrl: { type: String, default: null },
