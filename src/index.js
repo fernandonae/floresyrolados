@@ -23,12 +23,14 @@ connectDB();
 // --- 2. SERVIDOR HTTP ---
 const server = http.createServer(app);
 
-// --- 3. SOCKET.IO (GPS EN TIEMPO REAL) ---
+
 // --- 3. SOCKET.IO (GPS EN TIEMPO REAL) ---
 const io = new SocketServer(server, {
     cors: {
-        // Usa la URL de producción si existe, si no, localhost
-        origin: process.env.FRONTEND_URL || "http://localhost:5173",
+        origin: [
+            "http://localhost:5173",
+            "https://floresyrolados-g8r3u3gmn-fernandonaes-projects.vercel.app",
+        ],
         credentials: true
     },
 });

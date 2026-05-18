@@ -19,9 +19,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // 1. CONFIGURACIÓN DE CORS (Adaptable a producción)
+// DESPUÉS
 app.use(cors({
-    // Si existe FRONTEND_URL en el .env la usa, si no, usa localhost
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: [
+        'http://localhost:5173',
+        'https://floresyrolados-g8r3u3gmn-fernandonaes-projects.vercel.app',
+    ],
     credentials: true 
 }));
 
