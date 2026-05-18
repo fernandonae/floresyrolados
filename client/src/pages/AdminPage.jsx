@@ -575,42 +575,38 @@ const [newProduct, setNewProduct] = useState({
   ) : (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[600px] overflow-y-auto pr-2">
       {products.map(prod => (
-        <div key={prod._id} className="bg-black/60 border border-zinc-800 rounded-[2rem] overflow-hidden group hover:border-zinc-700 transition-all">
+        <div key={prod._id} className="bg-black/60 border border-zinc-800 rounded-[2rem] overflow-hidden group hover:border-zinc-700 transition-all relative">
           
-         {/* Imagen */}
-<div className="relative h-40 overflow-hidden">
-  <img
-    src={
-      prod.image?.startsWith('http') 
-        ? prod.image 
-        : `https://floresyrolados.onrender.com/uploads/${prod.image}` // ✅ URL de Render
-    }
-    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-    alt={prod.name}
-    onError={(e) => { 
-      e.target.src = "https://via.placeholder.com/500?text=Sin+Imagen"; 
-    }}
-  />
-</div>
+          {/* Contenedor de Imagen y Overlay */}
+          <div className="relative h-40 overflow-hidden">
+            <img
+              src={prod.image?.startsWith('http') ? prod.image : `https://floresyrolados.onrender.com/uploads/${prod.image}`}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt={prod.name}
+              onError={(e) => { e.target.src = "https://via.placeholder.com/500?text=Sin+Imagen"; }}
+            />
+            
+            {/* Categoría */}
             <div className="absolute top-3 left-3 bg-white text-black text-[8px] font-black px-3 py-1 rounded-full uppercase">
               {prod.category}
             </div>
-            {/* Botón eliminar aparece al hacer hover */}
+
+            {/* Botón eliminar */}
             <button
               onClick={async () => {
                 if (window.confirm(`¿Eliminar "${prod.name}" de la tienda?`)) {
                   await deleteProduct(prod._id);
                 }
               }}
-              className="absolute top-3 right-3 bg-red-600/80 hover:bg-red-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all active:scale-95"
+              className="absolute top-3 right-3 bg-red-600/80 hover:bg-red-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all active:scale-95 z-10"
             >
               <FiTrash2 size={14}/>
             </button>
           </div>
 
-          {/* Info */}
+          {/* Info del producto */}
           <div className="p-5">
-            <h4 className="font-black uppercase italic text-sm leading-tight truncate">{prod.name}</h4>
+            <h4 className="font-black uppercase italic text-sm leading-tight truncate text-white">{prod.name}</h4>
             <div className="flex justify-between items-center mt-3">
               <span className="text-green-500 font-black text-xl">${prod.price}</span>
               <span className="text-[9px] text-zinc-500 font-bold uppercase">Stock: {prod.stock}</span>
@@ -621,6 +617,7 @@ const [newProduct, setNewProduct] = useState({
       ))}
     </div>
   )}
+</div>
 
   {/* Mini previsualización del nuevo producto abajo */}
   {(newProduct.name || newProduct.preview) && (
