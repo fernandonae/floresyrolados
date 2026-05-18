@@ -29,7 +29,7 @@ const deliveryIcon = new L.Icon({
   iconAnchor: [20, 40]
 });
 
-const API_URL = "http://localhost:5000"; // URL de tu Backend
+const API_URL = "https://floresyrolados.onrender.com"; 
 const socket = io(API_URL);
 
 const categorias = ["Flores", "Extractos", "Comestibles THC", "Pods", "CBD", "Accesorios", "Quimicos", "psocodelicos"];
@@ -577,14 +577,21 @@ const [newProduct, setNewProduct] = useState({
       {products.map(prod => (
         <div key={prod._id} className="bg-black/60 border border-zinc-800 rounded-[2rem] overflow-hidden group hover:border-zinc-700 transition-all">
           
-          {/* Imagen */}
-          <div className="relative h-40 overflow-hidden">
-            <img
-              src={prod.image?.startsWith('http') ? prod.image : `http://localhost:5000/uploads/${prod.image}`}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              alt={prod.name}
-              onError={(e) => { e.target.src = "https://via.placeholder.com/500?text=Sin+Imagen"; }}
-            />
+         {/* Imagen */}
+<div className="relative h-40 overflow-hidden">
+  <img
+    src={
+      prod.image?.startsWith('http') 
+        ? prod.image 
+        : `https://floresyrolados.onrender.com/uploads/${prod.image}` // ✅ URL de Render
+    }
+    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    alt={prod.name}
+    onError={(e) => { 
+      e.target.src = "https://via.placeholder.com/500?text=Sin+Imagen"; 
+    }}
+  />
+</div>
             <div className="absolute top-3 left-3 bg-white text-black text-[8px] font-black px-3 py-1 rounded-full uppercase">
               {prod.category}
             </div>

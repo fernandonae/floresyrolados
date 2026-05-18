@@ -42,9 +42,9 @@ export const register = async (req, res) => {
         // Encriptar contraseña
         const passwordHash = await bcrypt.hash(password, 10);
 
-        // CONFIGURACIÓN DE RUTAS DE ARCHIVOS
-        // Usamos la IP de tu servidor local (o localhost)
-        const baseUrl = "http://localhost:5000/uploads/";
+       // CONFIGURACIÓN DE RUTAS DE ARCHIVOS
+// Cambiamos localhost por la URL real de Render
+const baseUrl = "https://floresyrolados.onrender.com/uploads/";
         
         // Atrapamos los archivos que vienen de Multer
         const foto = req.files?.['foto']?.[0] ? `${baseUrl}${req.files['foto'][0].filename}` : null;

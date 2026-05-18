@@ -15,7 +15,8 @@ import { Cannabis } from "lucide-react";
 
 
 
-const socket = io("http://localhost:5000");
+// Cámbialo por el link de Render (sin el /api al final para sockets)
+const socket = io("https://floresyrolados.onrender.com");
 const MIN_HOURS_AHEAD = 3;
 
 function CheckoutPage() {

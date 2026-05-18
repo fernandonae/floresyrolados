@@ -111,9 +111,9 @@ function HomePage() {
                   <img 
   src={
     prod.image?.startsWith('http') 
-      ? prod.image                                 // Si ya es URL completa (las viejas)
-      : `http://localhost:5000/uploads/${prod.image}` // Si es solo el nombre (las nuevas)
-  } 
+      ? prod.image                                     // Si ya es URL completa
+      : `https://floresyrolados.onrender.com/uploads/${prod.image}` // ✅ URL de producción
+}
   className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ${isBlocked ? 'grayscale opacity-40' : 'grayscale-0 opacity-100'}`} 
   alt={prod.name}
   onError={(e) => {
