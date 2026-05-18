@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  // Fuerza el link de Render aquí para probar
-  baseURL: "https://floresyrolados.onrender.com", 
+  baseURL: "https://floresyrolados.onrender.com/api", 
   withCredentials: true,
 });
 

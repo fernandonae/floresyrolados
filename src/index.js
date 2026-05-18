@@ -27,14 +27,16 @@ const server = http.createServer(app);
 // --- 3. SOCKET.IO (GPS EN TIEMPO REAL) ---
 const io = new SocketServer(server, {
     cors: {
-        origin: [
-            "http://localhost:5173",
-            "https://floresyrolados-g8r3u3gmn-fernandonaes-projects.vercel.app",
-        ],
+        origin: function(origin, callback) {
+            if (!origin || origin === 'http://localhost:5173' || origin.endsWith('.vercel.app')) {
+                callback(null, true);
+            } else {
+                callback(new Error('No permitido por CORS'));
+            }
+        },
         credentials: true
     },
 });
-
 // Compartir la instancia de 'io' con las rutas si fuera necesario
 app.set("socketio", io);
 
