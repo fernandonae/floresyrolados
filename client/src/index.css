@@ -1,0 +1,7 @@
+@import "tailwindcss"; /* <--- Prueba con esta sola línea si las 3 @tailwind te dan error */
+
+body {
+  background-color: #050505;
+  color: white;
+  margin: 0;
+}
